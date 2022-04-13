@@ -4,8 +4,8 @@
 #define MAX_SIZE 60
 #define NUMBER 55
 
-// Ò»¸ö×ÖÄ¸µÄÊı¾İ
-// ÔÚÎåÊ®ÒôÍ¼ÖĞµÄÎ»ÖÃ£¬ÂŞÂí×Ö£¬Æ½¼ÙÃû£¬Æ¬¼ÙÃû
+// ä¸€ä¸ªå­—æ¯çš„æ•°æ®
+// åœ¨äº”åéŸ³å›¾ä¸­çš„ä½ç½®ï¼Œç½—é©¬å­—ï¼Œå¹³å‡åï¼Œç‰‡å‡å
 typedef struct
 {
     char *rChar;
@@ -34,31 +34,31 @@ char *rChars[] =
     };
 char *hChars[] =
     {
-        (char *)"¤¢", (char *)"¤¤", (char *)"¤¦", (char *)"¤¨", (char *)"¤ª",
-        (char *)"¤«", (char *)"¤­", (char *)"¤¯", (char *)"¤±", (char *)"¤³",
-        (char *)"¤µ", (char *)"¤·", (char *)"¤¹", (char *)"¤»", (char *)"¤½",
-        (char *)"¤¿", (char *)"¤Á", (char *)"¤Ä", (char *)"¤Æ", (char *)"¤È",
-        (char *)"¤Ê", (char *)"¤Ë", (char *)"¤Ì", (char *)"¤Í", (char *)"¤Î",
-        (char *)"¤Ï", (char *)"¤Ò", (char *)"¤Õ", (char *)"¤Ø", (char *)"¤Û",
-        (char *)"¤Ş", (char *)"¤ß", (char *)"¤à", (char *)"¤á", (char *)"¤â",
-        (char *)"¤ä", (char *)"  ", (char *)"¤æ", (char *)"  ", (char *)"¤è",
-        (char *)"¤é", (char *)"¤ê", (char *)"¤ë", (char *)"¤ì", (char *)"¤í",
-        (char *)"¤ï", (char *)"  ", (char *)"  ", (char *)"  ", (char *)"¤ò",
-        (char *)"¤ó", (char *)"  ", (char *)"  ", (char *)"  ", (char *)"  "
+        (char *)"ã‚", (char *)"ã„", (char *)"ã†", (char *)"ãˆ", (char *)"ãŠ",
+        (char *)"ã‹", (char *)"ã", (char *)"ã", (char *)"ã‘", (char *)"ã“",
+        (char *)"ã•", (char *)"ã—", (char *)"ã™", (char *)"ã›", (char *)"ã",
+        (char *)"ãŸ", (char *)"ã¡", (char *)"ã¤", (char *)"ã¦", (char *)"ã¨",
+        (char *)"ãª", (char *)"ã«", (char *)"ã¬", (char *)"ã­", (char *)"ã®",
+        (char *)"ã¯", (char *)"ã²", (char *)"ãµ", (char *)"ã¸", (char *)"ã»",
+        (char *)"ã¾", (char *)"ã¿", (char *)"ã‚€", (char *)"ã‚", (char *)"ã‚‚",
+        (char *)"ã‚„", (char *)"  ", (char *)"ã‚†", (char *)"  ", (char *)"ã‚ˆ",
+        (char *)"ã‚‰", (char *)"ã‚Š", (char *)"ã‚‹", (char *)"ã‚Œ", (char *)"ã‚",
+        (char *)"ã‚", (char *)"  ", (char *)"  ", (char *)"  ", (char *)"ã‚’",
+        (char *)"ã‚“", (char *)"  ", (char *)"  ", (char *)"  ", (char *)"  "
     };
 char *kChars[] = 
     {
-        (char *)"¥¢", (char *)"¥¤", (char *)"¥¦", (char *)"¥¨", (char *)"¥ª",
-        (char *)"¥«", (char *)"¥­", (char *)"¥¯", (char *)"¥±", (char *)"¥³",
-        (char *)"¥µ", (char *)"¥·", (char *)"¥¹", (char *)"¥»", (char *)"¥½",
-        (char *)"¥¿", (char *)"¥Á", (char *)"¥Ä", (char *)"¥Æ", (char *)"¥È",
-        (char *)"¥Ê", (char *)"¥Ë", (char *)"¥Ì", (char *)"¥Í", (char *)"¥Î",
-        (char *)"¥Ï", (char *)"¥Ò", (char *)"¥Õ", (char *)"¥Ø", (char *)"¥Û",
-        (char *)"¥Ş", (char *)"¥ß", (char *)"¥à", (char *)"¥á", (char *)"¥â",
-        (char *)"¥ä", (char *)"  ", (char *)"¥æ", (char *)"  ", (char *)"¥è",
-        (char *)"¥é", (char *)"¥ê", (char *)"¥ë", (char *)"¥ì", (char *)"¥í",
-        (char *)"¥ï", (char *)"  ", (char *)"  ", (char *)"  ", (char *)"¥ò",
-        (char *)"¥ó", (char *)"  ", (char *)"  ", (char *)"  ", (char *)"  "
+        (char *)"ã‚¢", (char *)"ã‚¤", (char *)"ã‚¦", (char *)"ã‚¨", (char *)"ã‚ª",
+        (char *)"ã‚«", (char *)"ã‚­", (char *)"ã‚¯", (char *)"ã‚±", (char *)"ã‚³",
+        (char *)"ã‚µ", (char *)"ã‚·", (char *)"ã‚¹", (char *)"ã‚»", (char *)"ã‚½",
+        (char *)"ã‚¿", (char *)"ãƒ", (char *)"ãƒ„", (char *)"ãƒ†", (char *)"ãƒˆ",
+        (char *)"ãƒŠ", (char *)"ãƒ‹", (char *)"ãƒŒ", (char *)"ãƒ", (char *)"ãƒ",
+        (char *)"ãƒ", (char *)"ãƒ’", (char *)"ãƒ•", (char *)"ãƒ˜", (char *)"ãƒ›",
+        (char *)"ãƒ", (char *)"ãƒŸ", (char *)"ãƒ ", (char *)"ãƒ¡", (char *)"ãƒ¢",
+        (char *)"ãƒ¤", (char *)"  ", (char *)"ãƒ¦", (char *)"  ", (char *)"ãƒ¨",
+        (char *)"ãƒ©", (char *)"ãƒª", (char *)"ãƒ«", (char *)"ãƒ¬", (char *)"ãƒ­",
+        (char *)"ãƒ¯", (char *)"  ", (char *)"  ", (char *)"  ", (char *)"ãƒ²",
+        (char *)"ãƒ³", (char *)"  ", (char *)"  ", (char *)"  ", (char *)"  "
     };
 
 void initTable(table *&t)
@@ -142,7 +142,7 @@ void start(table *t)
 
     while (true)
     {
-        printf("»Ø³µ¼ÌĞø,ÍË³ö°´q\n");
+        printf("å›è½¦ç»§ç»­,é€€å‡ºæŒ‰q\n");
         key = getchar();
         if (key == 'q')
             break;
@@ -168,7 +168,7 @@ void start_2(table *t)
     int number[46];
     int seed;
 
-    printf("ÊäÈëÖÖ×Ó: ");
+    printf("è¾“å…¥ç§å­: ");
     scanf("%d", &seed);
     for (k = 0; k <= 35; k++)
         number[k] = k;
@@ -198,7 +198,7 @@ void start_2(table *t)
         seed = 0;
         while (true)
         {
-            printf("·¢Òô: ");
+            printf("å‘éŸ³: ");
             str[0] = getchar();
             while (str[0] == '\n')
                 str[0] = getchar();
@@ -217,10 +217,10 @@ void start_2(table *t)
                 while ((c = getchar()) != '\n');
             seed++;
             if (seed == 3)
-                printf("ÌáÊ¾: %c\n", t->data[i - 1].rChar[0]);
+                printf("æç¤º: %c\n", t->data[i - 1].rChar[0]);
             if (seed == 6)
             {
-                printf("´ğ°¸Îª: %c", t->data[i - 1].rChar[0]);
+                printf("ç­”æ¡ˆä¸º: %c", t->data[i - 1].rChar[0]);
                 printf("%c\n", t->data[i - 1].rChar[1]);
                 getchar();
                 break;
