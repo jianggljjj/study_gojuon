@@ -1,100 +1,37 @@
 /*******************************************************************************
  * file:            gojuon.cpp
  * author:          jianggl
- * created time:    2022/4/13 ä¸‹åˆ
- * description:     è¾“å‡ºäº”åéŸ³å›¾
+ * created time:    2022/4/13 ÏÂÎç
+ * description:     Êä³öÎåÊ®ÒôÍ¼
  * ****************************************************************************/
 
-/* --- å¤´æ–‡ä»¶ --- */
+/* --- Í·ÎÄ¼ş --- */
 //==============================================================================
 #include <stdio.h>
 #include <stdlib.h>
 
-/* --- å® --- */
+// °üº¬ÁËĞèÒªÓÃµ½µÄÊı¾İ
+#include "gojuon.h"
+
+/* --- º¯Êı --- */
 //==============================================================================
-#define MAX_SIZE 60
-#define NUMBER 46
-
-/* --- ç»“æ„ä½“/å…¨å±€å˜é‡ --- */
-//==============================================================================
-
-// äº”åéŸ³å›¾ä¸­ä¸€ä¸ªå­—æ¯çš„æ‰€æœ‰æ•°æ®
-// åŒ…æ‹¬ç½—é©¬å­—ï¼Œå¹³å‡åï¼Œç‰‡å‡å
-typedef struct
-{
-    char *rChar;    // ç½—é©¬å­—
-    char *hChar;    // å¹³å‡å
-    char *kChar;    // ç‰‡å‡å
-} letter;
-// ç”¨ä¸€ä¸ªé¡ºåºè¡¨æ¥å­˜å‚¨äº”åéŸ³å›¾
-typedef struct
-{
-    letter data[MAX_SIZE];
-    int length;
-} table;
-
-//  ç½—é©¬å­—
-char *rChars[] =
-    {
-        (char *)"a ", (char *)"i ", (char *)"u ", (char *)"e ", (char *)"o ",
-        (char *)"ka", (char *)"ki", (char *)"ku", (char *)"ke", (char *)"ko",
-        (char *)"sa", (char *)"si", (char *)"su", (char *)"se", (char *)"so",
-        (char *)"ta", (char *)"ti", (char *)"tu", (char *)"te", (char *)"to",
-        (char *)"na", (char *)"ni", (char *)"nu", (char *)"ne", (char *)"no",
-        (char *)"ha", (char *)"hi", (char *)"hu", (char *)"he", (char *)"ho",
-        (char *)"ma", (char *)"mi", (char *)"mu", (char *)"me", (char *)"mo",
-        (char *)"ya", (char *)"yu", (char *)"yo",
-        (char *)"ra", (char *)"ri", (char *)"ru", (char *)"re", (char *)"ro",
-        (char *)"wa", (char *)"wo",
-        (char *)"n "
-    };
-// å¹³å‡å
-char *hChars[] =
-    {
-        (char *)"ã‚", (char *)"ã„", (char *)"ã†", (char *)"ãˆ", (char *)"ãŠ",
-        (char *)"ã‹", (char *)"ã", (char *)"ã", (char *)"ã‘", (char *)"ã“",
-        (char *)"ã•", (char *)"ã—", (char *)"ã™", (char *)"ã›", (char *)"ã",
-        (char *)"ãŸ", (char *)"ã¡", (char *)"ã¤", (char *)"ã¦", (char *)"ã¨",
-        (char *)"ãª", (char *)"ã«", (char *)"ã¬", (char *)"ã­", (char *)"ã®",
-        (char *)"ã¯", (char *)"ã²", (char *)"ãµ", (char *)"ã¸", (char *)"ã»",
-        (char *)"ã¾", (char *)"ã¿", (char *)"ã‚€", (char *)"ã‚", (char *)"ã‚‚",
-        (char *)"ã‚„", (char *)"ã‚†", (char *)"ã‚ˆ",
-        (char *)"ã‚‰", (char *)"ã‚Š", (char *)"ã‚‹", (char *)"ã‚Œ", (char *)"ã‚",
-        (char *)"ã‚", (char *)"ã‚’",
-        (char *)"ã‚“"
-    };
-// ç‰‡å‡å
-char *kChars[] = 
-    {
-        (char *)"ã‚¢", (char *)"ã‚¤", (char *)"ã‚¦", (char *)"ã‚¨", (char *)"ã‚ª",
-        (char *)"ã‚«", (char *)"ã‚­", (char *)"ã‚¯", (char *)"ã‚±", (char *)"ã‚³",
-        (char *)"ã‚µ", (char *)"ã‚·", (char *)"ã‚¹", (char *)"ã‚»", (char *)"ã‚½",
-        (char *)"ã‚¿", (char *)"ãƒ", (char *)"ãƒ„", (char *)"ãƒ†", (char *)"ãƒˆ",
-        (char *)"ãƒŠ", (char *)"ãƒ‹", (char *)"ãƒŒ", (char *)"ãƒ", (char *)"ãƒ",
-        (char *)"ãƒ", (char *)"ãƒ’", (char *)"ãƒ•", (char *)"ãƒ˜", (char *)"ãƒ›",
-        (char *)"ãƒ", (char *)"ãƒŸ", (char *)"ãƒ ", (char *)"ãƒ¡", (char *)"ãƒ¢",
-        (char *)"ãƒ¤", (char *)"ãƒ¦", (char *)"ãƒ¨",
-        (char *)"ãƒ©", (char *)"ãƒª", (char *)"ãƒ«", (char *)"ãƒ¬", (char *)"ãƒ­",
-        (char *)"ãƒ¯", (char *)"ãƒ²",
-        (char *)"ãƒ³"
-    };
-
-/* --- å‡½æ•° --- */
-//==============================================================================
-// åˆå§‹åŒ–çº¿æ€§è¡¨
+// ³õÊ¼»¯ÏßĞÔ±í
 void initTable(table *&t)
 {
+    // malloc·µ»ØµÄÖµ¿ÉÄÜÎªnull
+    // ÒıÓÃtÖ®Ç°Òª¼ìÑéÊÇ·ñÎªnull
     t = (table *)malloc(sizeof(table));
-    t->length = 0;
+    if (t != NULL)
+        t->length = 0;
 }
 
-// åˆ é™¤çº¿æ€§è¡¨
+// É¾³ıÏßĞÔ±í
 void destroyTable(table *&t)
 {
     free(t);
 }
 
-// è¾“å‡ºä¸€ä¸ªå®Œæ•´çš„äº”åéŸ³å›¾
+// Êä³öÒ»¸öÍêÕûµÄÎåÊ®ÒôÍ¼
 void dispGojuon(table *t)
 {
     int i, j;
@@ -106,7 +43,7 @@ void dispGojuon(table *t)
         printf("%s ", t->data[i].hChar);
         printf("%s    ", t->data[i].kChar);
 
-        // ä¸ºäº†ç¾è§‚ï¼Œåœ¨ç©ºä½å¡«å……ç©ºæ ¼
+        // ÎªÁËÃÀ¹Û£¬ÔÚ¿ÕÎ»Ìî³ä¿Õ¸ñ
         if (i == 35 || i == 36)
         {
             printf("            ");
@@ -120,7 +57,7 @@ void dispGojuon(table *t)
             j += 3;
         }
 
-        // æ¯å½“è¾“å‡º5ä¸ªæ•°æ®æ—¶æ¢è¡Œ
+        // Ã¿µ±Êä³ö5¸öÊı¾İÊ±»»ĞĞ
         if ((j + 1) % 5 == 0)
             printf("\n");
         i++;
@@ -129,7 +66,7 @@ void dispGojuon(table *t)
     printf("\n");
 }
 
-// åˆ›å»ºäº”åéŸ³å›¾
+// ´´½¨ÎåÊ®ÒôÍ¼
 void createGojuon(table *&t, char *rChars[], char *hChars[], char *kChars[])
 {
     int i;
@@ -145,17 +82,19 @@ void createGojuon(table *&t, char *rChars[], char *hChars[], char *kChars[])
     t->length = NUMBER;
 }
 
-void print(table *gojuon, int number)
+// ¸ø³öÆ½¼ÙÃû£¬²¢³¢ÊÔÆ¥ÅäÓÃ»§µÄÊäÈë
+void match(table *gojuon, int number)
 {
     char str[3];
+    char uselessChars;
     int tip = 0;
 
     printf("%s\n", gojuon->data[number].hChar);
     while (true)
     {
-        printf("å‘éŸ³: ");
+        printf("·¢Òô: ");
         while ((str[0] = getchar()) == '\n');
-        // è¿™å‡ ä¸ªçš„ç½—é©¬å­—åªæœ‰ä¸€ä¸ªå­—æ¯
+        // Õâ¼¸¸öµÄÂŞÂí×ÖÖ»ÓĞÒ»¸ö×ÖÄ¸
         if (number < 5 || number == 45)
             if (str[0] == gojuon->data[number].rChar[0])
                 break;
@@ -169,33 +108,36 @@ void print(table *gojuon, int number)
             while ((str[2] = getchar()) != '\n');
         tip++;
         if (tip == 3)
-            printf("æç¤º: %c\n", gojuon->data[number].rChar[0]);
+            printf("ÌáÊ¾: %c\n", gojuon->data[number].rChar[0]);
         if (tip == 6)
         {
-            printf("ç­”æ¡ˆ: %s\n", gojuon->data[number].rChar);
-            getchar();
+            printf("´ğ°¸: %s\n", gojuon->data[number].rChar);
+            // getcharÓĞ·µ»ØÖµ
+            uselessChars = getchar();
             break;
         }
     }
 }
 
-// å®Œæˆç‰¹æ®ŠåŠŸèƒ½
-void start(table *gojuon)
+// ¿ªÊ¼Ò»¸ö²âÊÔ£¬¸ø³öÒ»¸öÆ½¼ÙÃû£¬Æ¥ÅäÓÃ»§ÊäÈëµÄÂŞÂí×Ö
+void startTest(table *gojuon)
 {
-    int seed;   // ç”¨æ¥äº§ç”Ÿéšæœºæ•°
-    int number[46]; // æŒ‰æ•°ç»„ç»™å‡ºçš„é¡ºåºè¾“å‡ºäº”åéŸ³
+    int scanfReturn;
+    int seed;   // ÓÃÀ´²úÉúËæ»úÊı
+    int number[46] = { 0 }; // °´Êı×é¸ø³öµÄË³ĞòÊä³öÎåÊ®Òô
     int i, randNum;
-    int temp;   // ç”¨æ¥äº¤æ¢æ•°ç»„number[]æ•°æ®
+    int temp;   // ÓÃÀ´½»»»Êı×énumber[]Êı¾İ
 
-    // è‡ªç„¶é¡ºåº(é€’å¢çš„0-n)
+    // ×ÔÈ»Ë³Ğò(µİÔöµÄ0-n)
     for (i = 0; i < gojuon->length; i++)
         number[i] = i;
-    printf("ä»¥ä¸Šæ˜¯å®Œæ•´çš„äº”åéŸ³å›¾ã€‚\n");
-    printf("è¾“å…¥ä¸€ä¸ªæ•´æ•°ç”Ÿæˆäº”åéŸ³çš„éšæœºé¡ºåºä»¥å¼€å§‹æµ‹è¯•: ");
-    scanf("%d", &seed);
+    printf("ÒÔÉÏÊÇÍêÕûµÄÎåÊ®ÒôÍ¼¡£\n");
+    printf("ÊäÈëÒ»¸öÕûÊıÉú³ÉÎåÊ®ÒôµÄËæ»úË³ĞòÒÔ¿ªÊ¼²âÊÔ: ");
+    // scanfÓĞ·µ»ØÖµ
+    scanfReturn = scanf("%d", &seed);
     srand(seed);
 
-    // å¾—åˆ°ä¸€ä¸ªéšæœºé¡ºåº
+    // µÃµ½Ò»¸öËæ»úË³Ğò
     for (i = 0; i < gojuon->length - 1; i++)
     {
         randNum = rand() % gojuon->length;
@@ -203,17 +145,18 @@ void start(table *gojuon)
         number[randNum] = number[i];
         number[i] = temp;
     }
-    // ä»¥éšæœºé¡ºåºéå†number[],åŒæ—¶éå†äº”åéŸ³
+    // ÒÔËæ»úË³Ğò±éÀúnumber[],Í¬Ê±±éÀúÎåÊ®Òô
     for (i = 0; i < 46; i++)
     {
         system("cls");
-        print(gojuon, number[i]);
+        match(gojuon, number[i]);
     }
     system("cls");
-    printf("æ­å–œï¼Œä½ æˆåŠŸé€šè¿‡äº†æµ‹è¯•!\n");
+    printf("¹§Ï²£¬Äã³É¹¦Í¨¹ıÁË²âÊÔ!\n");
+    system("pause");
 }
 
-/* --- mainå‡½æ•° --- */
+/* --- mainº¯Êı --- */
 //==============================================================================
 int main(void)
 {
@@ -222,7 +165,7 @@ int main(void)
     initTable(gojuon);
     createGojuon(gojuon, rChars, hChars, kChars);
     dispGojuon(gojuon);
-    start(gojuon);
+    startTest(gojuon);
     destroyTable(gojuon);
     return 0;
 }
